@@ -1,0 +1,94 @@
+<div>
+	<div class="d-flex flex-row justify-content-center py-3">
+		<h2 class="font-weight-bold">Calculator</h2>
+	</div>
+	<div class="d-flex flex-column justify-content-center bg-dark text-white rounded-pill py-2 px-5 mx-5">
+		{{displayValue}}
+	</div>
+	<div class="px-5 mx-5 py-2 font-weight-bold">
+		{{operator}}
+	</div>
+	<div class="d-flex flex-column justify-content-center bg-dark text-white rounded-pill py-2 px-5 mx-5 mb-4"
+		*ngIf="isOperator && tempValue != ''">
+		{{tempValue}}
+	</div>
+	<div class="container px-5">
+		<div class="row row-cols-4 py-2">
+			<div class="col d-flex justify-content-center">
+				<button class="w-50 rounded-pill btn btn-danger text-white" (click)="onClearValue()">AC</button>
+			</div>
+			<div class="col d-flex justify-content-center">
+				<button class="w-50 rounded-pill btn btn-warning text-white" (click)="onDeleteValue()">Del</button>
+			</div>
+			<div class="col d-flex justify-content-center ">
+				<button class="w-50 rounded-pill btn btn-info text-white" (click)="onOperator('%')">%</button>
+			</div>
+			<div class="col d-flex justify-content-center">
+				<button class="w-50 rounded-pill btn btn-info text-white" (click)="onOperator('÷')">÷</button>
+			</div>
+		</div>
+		<div class="row row-cols-4 py-2">
+			<div class="col d-flex justify-content-center">
+				<button class="w-50 rounded-pill btn btn-secondary text-white" (click)="onAddValue('7')">7</button>
+			</div>
+			<div class="col d-flex justify-content-center">
+				<button class="w-50 rounded-pill btn btn-secondary text-white" (click)="onAddValue('8')">8</button>
+			</div>
+			<div class="col d-flex justify-content-center">
+				<button class="w-50 rounded-pill btn btn-secondary text-white" (click)="onAddValue('9')">9</button>
+			</div>
+			<div class="col d-flex justify-content-center">
+				<button class="w-50 rounded-pill btn btn-info text-white" (click)="onOperator('×')">×</button>
+			</div>
+		</div>
+		<div class="row row-cols-4 py-2">
+			<div class="col d-flex justify-content-center">
+				<button class="w-50 rounded-pill btn btn-secondary text-white" (click)="onAddValue('4')">4</button>
+			</div>
+			<div class="col d-flex justify-content-center">
+				<button class="w-50 rounded-pill btn btn-secondary text-white" (click)="onAddValue('5')">5</button>
+			</div>
+			<div class="col d-flex justify-content-center">
+				<button class="w-50 rounded-pill btn btn-secondary text-white" (click)="onAddValue('6')">6</button>
+			</div>
+			<div class="col d-flex justify-content-center">
+				<button class="w-50 rounded-pill btn btn-info text-white" (click)="onOperator('-')">-</button>
+			</div>
+		</div>
+		<div class="row row-cols-4 py-2">
+			<div class="col d-flex justify-content-center">
+				<button class="w-50 rounded-pill btn btn-secondary text-white" (click)="onAddValue('1')">1</button>
+			</div>
+			<div class="col d-flex justify-content-center">
+				<button class="w-50 rounded-pill btn btn-secondary text-white" (click)="onAddValue('2')">2</button>
+			</div>
+			<div class="col d-flex justify-content-center">
+				<button class="w-50 rounded-pill btn btn-secondary text-white" (click)="onAddValue('3')">3</button>
+			</div>
+			<div class="col d-flex justify-content-center">
+				<button class="w-50 rounded-pill btn btn-info text-white" (click)="onOperator('+')">+</button>
+			</div>
+		</div>
+		<div class="row row-cols-4 py-2">
+			<div class="col-6 d-flex justify-content-center">
+				<button class="w-75 rounded-pill btn btn-secondary text-white" (click)="onAddValue('0')">0</button>
+			</div>
+			<div class="col d-flex justify-content-center">
+				<button class="w-50 rounded-pill btn btn-info text-white" (click)="onAddValue('.')">.</button>
+			</div>
+			<div class="col d-flex justify-content-center">
+				<button class="w-50 rounded-pill btn btn-success text-white" (click)="onCalculate()">=</button>
+			</div>
+		</div>
+	</div>
+	<div class="d-flex flex-column px-5">
+		<form [formGroup]="calculatorForm" (ngSubmit)="onSave()" class="my-5">
+			<label for="name">User Name</label>
+			<input type="text" id="userName" formControlName="userName" class="form-control my-2" />
+			<label for="name">Type Name</label>
+			<input type="text" id="typeName" formControlName="typeName" class="form-control my-2" />
+			<button type="button" class="btn btn-primary my-3" (click)="onSave()"
+				[disabled]="!calculatorForm.valid">Save</button>
+		</form>
+	</div>
+</div>
